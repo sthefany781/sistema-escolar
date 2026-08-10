@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Consulta CGM - Login</title>
+
+        <style>
+                * {
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }
+
+                body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                        /* Substitua o link abaixo pelo link real da sua foto */
+                        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                                url('https://internationalschool.global/wp-content/uploads/2025/08/shutterstock_2616186911-1-1.jpg') no-repeat center center;
+                        background-size: cover;
+                        position: relative;
+                }
+
+                .header-text {
+                        position: absolute;
+                        top: 5%;
+                        font-size: 24px;
+                        font-weight: bold;
+                        font-style: italic;
+                        color: #000000;
+                        text-align: center;
+                        width: 100%;
+                        text-shadow: 1px 1px 2px rgb(255, 255, 255);
+                }
+
+                .login-card {
+                        background-color: #ffffff;
+                        width: 90%;
+                        max-width: 420px;
+                        padding: 40px 30px;
+                        border-radius: 25px;
+                        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+                        text-align: center;
+                        z-index: 10;
+                }
+
+                .logo {
+                        width: 120px;
+                        height: auto;
+                        margin-bottom: 10px;
+                }
+
+                .title-cgm {
+                        color: #000000;
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: 25px;
+                        text-transform: lowercase;
+                }
+
+                .input-group {
+                        position: relative;
+                        margin-bottom: 20px;
+                        display: flex;
+                        align-items: center;
+                }
+
+                .input-field {
+                        width: 100%;
+                        padding: 15px 15px 15px 20px;
+                        border: none;
+                        border-radius: 50px;
+                        font-size: 16px;
+                        color: #ffffff;
+                        outline: none;
+                        background-color: #878080;
+                }
+
+                .input-field::placeholder {
+                        color: #ffffff;
+                }
+
+                .btn-verificar {
+                        width: 100%;
+                        background-color: #126d38;
+                        color: #ffffff;
+                        border: none;
+                        padding: 14px;
+                        border-radius: 50px;
+                        font-size: 16px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.517);
+                }
+
+                .btn-verificar:hover {
+                        background-color: #1aa71e;
+                }
+
+                .message {
+                        margin-top: 15px;
+                        font-size: 15px;
+                        font-weight: bold;
+                        display: none;
+                }
+
+                .erro {
+                        color: #ff0000;
+                }
+
+                .success {
+                        color: #00ff3c;
+                }
+        </style>
+</head>
+
+<body>
+
+        <div class="header-text">O que você estuda hoje define o seu amanhã</div>
+        <div class="login-card">
+
+                <img src="https://static.wixstatic.com/media/168174_03cb609675894309aa22c54c0880fd79~mv2.png/v1/fill/w_230,h_230,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/168174_03cb609675894309aa22c54c0880fd79~mv2.png"
+                        alt="logo" class="logo">
+
+                <div class="title-cgm">CGM</div>
+
+
+                <form id="cgmForm" onsubmit="validarAcesso(event)">
+                        <div class="input-group">
+
+
+                                <input type="text" id="cgmInput" class="input-field" placeholder="Digite apenas Números"
+                                        maxlength="8" inputmode="numeric" pattern="[0-9]*" required>
+                        </div>
+
+                        <button type="submit" class="btn-verificar">Verificar</button>
+                </form>
+                <div id="feedbackMessage" class="message"></div>
+        </div>
+
+        <script>
+
+                function validarAcesso(event) {
+                        event.preventDefault();
+
+                        const input = document.getElementById('cgmInput').value;
+                        const feedback = document.getElementById('feedbackMessage');
+
+                        if (input.length === 8) {
+                                feedback.textContent = "Acesso Permitido! Redirecionando...";
+                                feedback.className = "message success";
+                                feedback.style.display = "block";
+                                setTimeout(() => {
+                                        alert("Acesso permitido!");
+                                }, 500);
+
+                        } else {
+                                feedback.textContent = "Acesso negado, O CGM deve conter 8 números.";
+                                feedback.className = "erro";
+                                feedback.style.display = "block";
+                                alert("Acesso Negado!, O CGM deve conter 8 números.");
+                        }
+                }
+        </script>
+</body>
+
+</html>
