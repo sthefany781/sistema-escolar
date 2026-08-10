@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seleção de Perfil - Aluno ou Professor</title>
+
+        <style>
+                * {
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }
+
+                body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                        /* Mantive o mesmo fundo borrado que você configurou */
+                        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                                url('https://internationalschool.global/wp-content/uploads/2025/08/shutterstock_2616186911-1-1.jpg') no-repeat center center;
+                        background-size: cover;
+                        position: relative;
+                        padding: 20px;
+                }
+
+                /* Container principal para alinhar o título e as opções verticais */
+                .selection-container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 100%;
+                        max-width: 900px;
+                        z-index: 10;
+                }
+
+                /* Título idêntico ao da imagem */
+                .main-title {
+                        font-size: clamp(28px, 5vw, 48px);
+                        font-weight: bold;
+                        color: #000000;
+                        text-align: center;
+                        margin-bottom: 40px;
+                }
+
+                /* Alinha os dois botões lado a lado no desktop e em coluna no celular */
+                .cards-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        gap: 40px;
+                        width: 100%;
+                        flex-wrap: wrap;
+                }
+
+                /* Estilização dos cards laranjas conforme a imagem */
+                .profile-card {
+                        background-color: #e66b1a;
+                        /* Cor laranja da imagem */
+                        width: 100%;
+                        max-width: 320px;
+                        height: 320px;
+                        border-radius: 25px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        text-decoration: none;
+                        transition: transform 0.2s, box-shadow 0.2s;
+                        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+                        padding: 20px;
+                }
+
+                /* Efeito de clique/passar o mouse para melhorar a navegação */
+                .profile-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.4);
+                        background-color: #f27926;
+                }
+
+                /* Ícones SVG em preto */
+                .profile-icon {
+                        width: 110px;
+                        height: 110px;
+                        fill: #000000;
+                        margin-bottom: 25px;
+                }
+
+                /* Texto interno dos cards */
+                .profile-text {
+                        color: #000000;
+                        font-size: 24px;
+                        font-weight: bold;
+                        text-align: center;
+                        line-height: 1.2;
+                }
+        </style>
+</head>
+
+<body>
+
+        <div class="selection-container">
+                <!-- Título Superior -->
+                <h1 class="main-title">sou aluno ou professor</h1>
+
+                <!-- Bloco de Opções -->
+                <div class="cards-wrapper">
+
+                        <!-- Card Aluno (Substitua o '#' pelo link da página do aluno se quiser) -->
+                        <a href="#" class="profile-card" onclick="escolherPerfil('aluno')">
+                                <svg class="profile-icon" viewBox="0 0 24 24">
+                                        <path
+                                                d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
+                                </svg>
+                                <div class="profile-text">sou aluno</div>
+                        </a>
+
+                        <!-- Card Professor -->
+                        <a href="#" class="profile-card" onclick="escolherPerfil('professor')">
+                                <!-- Novo Ícone de Professor Apontando para a Lousa -->
+                                <svg class="profile-icon" viewBox="0 0 24 24">
+                                        <path
+                                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                </svg>
+                                <div class="profile-text">sou<br>professor</div>
+                        </a>
+
+
+                </div>
+        </div>
+
+        <script>
+
+                function escolherPerfil(perfil) {
+                        alert("Você selecionou o perfil: " + perfil);
+
+
+                }
+        </script>
+</body>
+
+</html>
