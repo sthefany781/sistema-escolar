@@ -1,0 +1,342 @@
+
+
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Frequência</title>
+    <style>
+        /* O SEU CSS CLEAN, HUMANIZADO E COMPACTO */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+        }
+        
+        body { 
+            background-color: #ffffff; 
+            color: #2d3748; 
+            display: flex; 
+            min-height: 100vh; 
+        }
+        
+        /* Menu Lateral em Azul Escuro (#1e3a8a) */
+        nav { 
+            width: 250px; 
+            background-color: #1e3a8a; 
+            color: #ffffff; 
+            padding: 40px 20px; 
+        }
+        
+        nav h1 { 
+            font-size: 1.3rem; 
+            font-weight: 800; 
+            margin-bottom: 40px; 
+            text-align: center; 
+        }
+        
+        nav ul { 
+            list-style: none; 
+        }
+        
+        nav ul li { 
+            padding: 12px 15px; 
+            margin-bottom: 8px; 
+            border-radius: 6px; 
+            font-size: 0.95rem; 
+            color: #cbd5e0; 
+            cursor: pointer; 
+            transition: background-color 0.2s, color 0.2s; 
+        }
+        
+        nav ul li:hover, nav ul li.active { 
+            background-color: #111111; 
+            color: #ffffff; 
+            font-weight: 700; 
+        }
+        
+        /* Conteúdo Principal */
+        main { 
+            flex: 1; 
+            padding: 50px; 
+            overflow-y: auto; 
+        }
+        
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 40px; 
+            border-bottom: 1px solid #cbd5e0; 
+            padding-bottom: 15px; 
+        }
+        
+        .user-info { 
+            font-weight: 600; 
+            color: #718096; 
+        }
+        
+        .card { 
+            background: #ffffff; 
+            padding: 25px; 
+            border-radius: 8px; 
+            border: 1px solid #cbd5e0; 
+            margin-bottom: 30px; 
+        }
+        
+        .card h2 { 
+            font-size: 1.3rem; 
+            font-weight: 700; 
+            color: #111111; 
+            margin-bottom: 20px; 
+        }
+        
+        /* O SEU MODELO DE INPUTS MINIMALISTAS COM LINHA INFERIOR */
+        .campo-grupo { 
+            margin-bottom: 28px; 
+            position: relative; 
+            text-align: left; 
+        }
+        
+        .campo-grupo label { 
+            display: block; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            color: #718096; 
+            margin-bottom: 8px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        
+        .campo-grupo input { 
+            width: 100%; 
+            border: none; 
+            border-bottom: 1.5px solid #cbd5e0; 
+            padding: 10px 0; 
+            font-size: 1rem; 
+            color: #1a202c; 
+            background: transparent; 
+            outline: none; 
+            transition: border-color 0.2s; 
+        }
+        
+        .campo-grupo input:focus { 
+            border-bottom-color: #1e3a8a; 
+        }
+        
+        /* Mensagens de Alerta */
+        .texto-erro { 
+            display: none; 
+            color: #e53e3e; 
+            font-size: 0.85rem; 
+            margin-top: 12px; 
+            line-height: 1.4; 
+        }
+        
+        .texto-erro strong { 
+            display: block; 
+            margin-bottom: 2px; 
+        }
+        
+        .toast-sucesso { 
+            display: none; 
+            background-color: #f0fdf4; 
+            color: #166534; 
+            border: 1px solid #bbf7d0; 
+            padding: 14px; 
+            border-radius: 6px; 
+            text-align: center; 
+            margin-top: 20px; 
+            font-size: 0.95rem; 
+            font-weight: 500; 
+        }
+        
+        .btn-entrar { 
+            width: 100%; 
+            background-color: #111111; 
+            color: #ffffff; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 6px; 
+            font-size: 1rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: background-color 0.2s; 
+        }
+        
+        .btn-entrar:hover { 
+            background-color: #2d3748; 
+        }
+        
+        /* Tabela Académica Limpa */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+        }
+        
+        th, td { 
+            padding: 14px 0; 
+            border-bottom: 1px solid #cbd5e0; 
+            text-align: left; 
+            font-size: 0.95rem; 
+        }
+        
+        th { 
+            font-size: 0.85rem; 
+            color: #718096; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>🏫 EduConnect</h1>
+        <ul>
+            <li>Painel Inicial</li>
+            <li>As Minhas Notas</li>
+            <li class="active">Frequência</li>
+            <li>Biblioteca</li>
+            <li>Cardápio</li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="header">
+            <h2>Frequência Escolar</h2>
+            <div class="user-info">👤 Aluno: Gabriel Souza (7º Ano A)</div>
+        </div>
+
+        <div class="card">
+            <h2>📈 Percentual de Presença</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Disciplina</th>
+                        <th>Aulas Totais</th>
+                        <th>Faltas</th>
+                        <th>Frequência</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Matemática</td>
+                        <td>40</td>
+                        <td>12</td>
+                        <td id="freq-mat" style="color: #e53e3e; font-weight: bold;">70%</td>
+                    </tr>
+                    <tr>
+                        <td>Português</td>
+                        <td>40</td>
+                        <td>4</td>
+                        <td style="color: #166534; font-weight: bold;">90%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>📄 Justificar Falta Pendente</h2>
+            <p style="color: #718096; margin-bottom: 20px; font-size: 0.95rem;">Envie o motivo da sua ausência em Matemática para análise da coordenação.</p>
+            
+            <div class="campo-grupo">
+                <label for="motivoFalta">Motivo ou Nome do Atestado</label>
+                <input type="text" id="motivoFalta" placeholder="Ex: Consulta médica, gripe, etc.">
+                
+                <div id="erroFrequencia" class="texto-erro">
+                    <strong>Abordagem Incorreta!</strong>
+                    <span id="txtErroFreq">Aviso de validação.</span>
+                </div>
+            </div>
+            
+            <div id="sucessoFrequencia" class="toast-sucesso">
+                ✓ Enviado! Sua justificativa foi entregue e as faltas foram abonadas no boletim.
+            </div>
+            
+            <button class="btn-entrar" id="btnJustificar" onclick="tentarJustificar()">Enviar Justificativa</button>
+        </div>
+    </main>
+
+<script>
+        function analisarTextoJustificativa(texto) {
+            const limpo = texto.trim().toLowerCase();
+
+            if (limpo === "") {
+                throw new Error("O campo não pode ficar vazio! Você tem que digitar alguma coisa para justificar sua falta.");
+            }
+
+            const termosInvalidos = ["preguiça", "dormi", "esqueci", "atrasei", "perdi o autocarro", "perdi o ônibus", "joguei"];
+            for (let termo of termosInvalidos) {
+                if (limpo.includes(termo)) {
+                    throw new Error("Motivo inválido! Esse motivo não é justificável pela coordenação escolar. Entre em contato com a secretaria.");
+                }
+            }
+
+            if (limpo.length < 8) {
+                throw new Error("Explicação muito curta! Digite de forma clara o motivo ou o nome do documento médico (Mínimo 8 caracteres).");
+            }
+
+            return true;
+        }
+
+        function tentarJustificar() {
+            const inputTexto = document.getElementById("motivoFalta").value;
+            const erroBox = document.getElementById("erroFrequencia");
+            const txtErro = document.getElementById("txtErroFreq");
+            const sucessoBox = document.getElementById("sucessoFrequencia");
+
+            try {
+                analisarTextoJustificativa(inputTexto);
+                
+                erroBox.style.display = "none";
+                sucessoBox.style.display = "block";
+                
+                const celulaMat = document.getElementById("freq-mat");
+                celulaMat.textContent = "95%";
+                celulaMat.style.color = "#166534";
+                
+                document.getElementById("btnJustificar").disabled = true;
+                document.getElementById("btnJustificar").style.backgroundColor = "#718096";
+            } catch (erro) {
+                txtErro.textContent = erro.message;
+                erroBox.style.display = "block";
+                sucessoBox.style.display = "none";
+            }
+        }
+
+        const calcularRiscoReprovacao = (faltas) => faltas > 10 ? "Risco de Reprovação" : "Regular";
+
+        console.log("%c--- VERIFICAÇÃO UNITÁRIA DE FREQUÊNCIA ---", "font-weight: bold; color: #1e3a8a;");
+        const assert = (cond, msg) => console.log(cond ? `✅ Passou: ${msg}` : `❌ Falhou: ${msg}`);
+
+        try { 
+            analisarTextoJustificativa(""); 
+            assert(false, "T1"); 
+        } catch(e) { 
+            assert(e.message.includes("não pode ficar vazio"), "Teste 1: Captura de exceção para campo sem nada."); 
+        }
+
+        try { 
+            analisarTextoJustificativa("Tive preguiça hoje"); 
+            assert(false, "T2"); 
+        } catch(e) { 
+            assert(e.message.includes("não é justificável"), "Teste 2: Captura de exceção para motivo inválido."); 
+        }
+
+        try { 
+            analisarTextoJustificativa("doente"); 
+            assert(false, "T3"); 
+        } catch(e) { 
+            assert(e.message.includes("Explicação muito curta"), "Teste 3: Captura de exceção para texto curto."); 
+        }
+
+        assert(analisarTextoJustificativa("Atestado de Consulta Médica") === true, "Teste 4: Justificativa aceita com sucesso.");
+        assert(calcularRiscoReprovacao(4) === "Regular", "Teste 5: Função refatorada validou status com sucesso.");
+    </script>
+</body>
+</html>
