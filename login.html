@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Central Do Aluno Escola</title>
+      <style>
+            /* Configurações de base e fontes do sistema */
+            * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+                  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            }
+
+            body {
+                  background-color: #ffffff;
+                  color: #2d3748;
+                  display: flex;
+                  min-height: 100vh;
+            }
+
+            /* PAINEL ESQUERDO */
+            .painel-lateral {
+                  flex: 1.1;
+                  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbue-s9EFawdaEhzgSJW4foMVrc9EkIlVvgohd28Utui-sZJ4JV48p-AM&s=10);
+                  color: #ffffff;
+                  padding: 60px;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  position: relative;
+                  overflow: hidden;
+            }
+
+            /* Efeito de linhas finas de fundo */
+
+
+
+
+            /* PAINEL DIREITO */
+            .painel-formulario {
+                  flex: 0.9;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  padding: 100px;
+                  background-color: #ffffff;
+            }
+
+            .marca-escola {
+                  font-size: 1.4rem;
+                  font-weight: 800;
+                  color: #1e3a8a;
+                  margin-bottom: 60px;
+            }
+
+            .formulario-titulo {
+                  font-size: 2rem;
+                  font-weight: 700;
+                  color: #111111;
+                  margin-bottom: 8px;
+            }
+
+            .formulario-subtitulo {
+                  font-size: 0.95rem;
+                  color: #718096;
+                  margin-bottom: 35px;
+            }
+
+            /* Inputs minimalistas com linha inferior */
+            .campo-grupo {
+                  margin-bottom: 28px;
+                  position: relative;
+            }
+
+            .campo-grupo label {
+                  display: block;
+                  font-size: 0.85rem;
+                  font-weight: 600;
+                  color: #718096;
+                  margin-bottom: 4px;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+            }
+
+            .campo-grupo input {
+                  width: 100%;
+                  border: none;
+                  border-bottom: 1.5px solid #cbd5e0;
+                  padding: 10px 0;
+                  font-size: 1rem;
+                  color: #1a202c;
+                  background: transparent;
+                  transition: border-color 0.2s;
+            }
+
+            .campo-grupo input:focus {
+                  outline: none;
+                  border-bottom-color: #1e3a8a;
+            }
+
+            /* Alertas de Erro */
+            .texto-erro {
+                  display: none;
+                  color: #e53e3e;
+                  font-size: 0.85rem;
+                  margin-top: 8px;
+                  line-height: 1.4;
+            }
+
+            .texto-erro strong {
+                  display: block;
+                  margin-bottom: 2px;
+            }
+
+            .toast-sucesso {
+                  display: none;
+                  background-color: #f0fdf4;
+                  color: #166534;
+                  border: 1px solid #bbf7d0;
+                  padding: 14px;
+                  border-radius: 6px;
+                  font-size: 0.95rem;
+                  font-weight: 500;
+                  text-align: center;
+                  margin-top: 20px;
+            }
+
+            /* Botão de Ação */
+            .btn-entrar {
+                  width: 100%;
+                  background-color: #111111;
+                  color: #ffffff;
+                  border: none;
+                  padding: 14px;
+                  border-radius: 6px;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  cursor: pointer;
+                  margin-top: 10px;
+                  transition: background-color 0.2s;
+            }
+
+            .btn-entrar:hover {
+                  background-color: #2d3748;
+            }
+      </style>
+</head>
+
+<body>
+
+      <div class="painel-lateral">
+      </div>
+
+      <!-- PAINEL DIREITO -->
+      <div class="painel-formulario">
+            <div class="marca-escola">Central Do Aluno</div>
+
+            <h2 class="formulario-titulo">Bem-vindo de volta!</h2>
+            <p class="formulario-subtitulo">Identifique-se para continuar.</p>
+
+            <form id="formAcesso" onsubmit="validarTesteLogin(event)">
+
+                  <div class="campo-grupo">
+                        <label for="email">E-mail Institucional</label>
+                        <input type="text" id="email" placeholder="SeuNome@escola.pr.gov.br" autocomplete="off">
+
+                        <div id="erroEmail" class="texto-erro">
+                              <strong>Esse formato de e-mail não é válido aqui.</strong>
+                              Por favor, use o seu endereço completo fornecido pela escola.<br>
+                              <em>Exemplo correto: sthefany@escola.pr.gov.br</em>
+                        </div>
+                  </div>
+
+                  <div class="campo-grupo">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" placeholder="Digite sua senha">
+                        <div id="erroSenha" class="texto-erro">Por favor, preencha o campo de senha.</div>
+                  </div>
+
+                  <button type="submit" class="btn-entrar">Entrar agora</button>
+            </form>
+
+            <div id="toastSucesso" class="toast-sucesso">
+                  Tudo certo! Login validado. Entrando no painel...
+            </div>
+      </div>
+
+      <!-- Validação do teste unitário na interface -->
+      <script>
+            function validarTesteLogin(event) {
+                  event.preventDefault();
+
+                  const valorEmail = document.getElementById('email').value.trim();
+                  const valorSenha = document.getElementById('senha').value.trim();
+
+                  const elementoErroEmail = document.getElementById('erroEmail');
+                  const elementoErroSenha = document.getElementById('erroSenha');
+                  const elementoSucesso = document.getElementById('toastSucesso');
+
+                  elementoErroEmail.style.display = 'none';
+                  elementoErroSenha.style.display = 'none';
+                  elementoSucesso.style.display = 'none';
+
+                  let passouNoTeste = true;
+
+                  const dominioEscolar = "@escola.pr.gov.br";
+
+                  if (!valorEmail.endsWith(dominioEscolar)) {
+                        elementoErroEmail.style.display = 'block';
+                        passouNoTeste = false;
+                  }
+
+                  if (valorSenha === "") {
+                        elementoErroSenha.style.display = 'block';
+                        passouNoTeste = false;
+                  }
+
+                  if (passouNoTeste) {
+                        elementoSucesso.style.display = 'block';
+                  }
+            }
+      </script>
+
+</body>
+
+</html>
