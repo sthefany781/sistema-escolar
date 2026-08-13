@@ -6,9 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - Frequência</title>
+    <title>Central Do Aluno Frequência</title>
     <style>
-        /* O SEU CSS CLEAN, HUMANIZADO E COMPACTO */
         * { 
             margin: 0; 
             padding: 0; 
@@ -23,7 +22,6 @@
             min-height: 100vh; 
         }
         
-        /* Menu Lateral em Azul Escuro (#1e3a8a) */
         nav { 
             width: 250px; 
             background-color: #1e3a8a; 
@@ -58,7 +56,6 @@
             font-weight: 700; 
         }
         
-        /* Conteúdo Principal */
         main { 
             flex: 1; 
             padding: 50px; 
@@ -94,7 +91,6 @@
             margin-bottom: 20px; 
         }
         
-        /* O SEU MODELO DE INPUTS MINIMALISTAS COM LINHA INFERIOR */
         .campo-grupo { 
             margin-bottom: 28px; 
             position: relative; 
@@ -127,7 +123,6 @@
             border-bottom-color: #1e3a8a; 
         }
         
-        /* Mensagens de Alerta */
         .texto-erro { 
             display: none; 
             color: #e53e3e; 
@@ -171,7 +166,6 @@
             background-color: #2d3748; 
         }
         
-        /* Tabela Académica Limpa */
         table { 
             width: 100%; 
             border-collapse: collapse; 
@@ -196,7 +190,7 @@
 <body>
 
     <nav>
-        <h1>🏫 EduConnect</h1>
+        <h1> Central Do Aluno</h1>
         <ul>
             <li>Painel Inicial</li>
             <li>As Minhas Notas</li>
@@ -209,11 +203,11 @@
     <main>
         <div class="header">
             <h2>Frequência Escolar</h2>
-            <div class="user-info">👤 Aluno: Gabriel Souza (7º Ano A)</div>
+            <div class="user-info"> Aluno: Sthefany Oliveira (3º Ano D)</div>
         </div>
 
         <div class="card">
-            <h2>📈 Percentual de Presença</h2>
+            <h2>Percentual de Presença</h2>
             <table>
                 <thead>
                     <tr>
@@ -236,12 +230,30 @@
                         <td>4</td>
                         <td style="color: #166534; font-weight: bold;">90%</td>
                     </tr>
+                    <tr>
+                        <td>Fisica</td>
+                        <td>40</td>
+                        <td>4</td>
+                        <td style="color: #166534; font-weight: bold;">90%</td>
+                    </tr>
+                    <tr>
+                        <td>Projeto De Vida</td>
+                        <td>40</td>
+                        <td>4</td>
+                        <td style="color: #166534; font-weight: bold;">90%</td>
+                    </tr>
+                    <tr>
+                        <td>Ed. Fisica</td>
+                        <td>40</td>
+                        <td>4</td>
+                        <td style="color: #166534; font-weight: bold;">90%</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="card">
-            <h2>📄 Justificar Falta Pendente</h2>
+            <h2> Justificar Falta Pendente</h2>
             <p style="color: #718096; margin-bottom: 20px; font-size: 0.95rem;">Envie o motivo da sua ausência em Matemática para análise da coordenação.</p>
             
             <div class="campo-grupo">
@@ -255,7 +267,7 @@
             </div>
             
             <div id="sucessoFrequencia" class="toast-sucesso">
-                ✓ Enviado! Sua justificativa foi entregue e as faltas foram abonadas no boletim.
+                 Enviado! Sua justificativa foi entregue e as faltas foram abonadas no boletim.
             </div>
             
             <button class="btn-entrar" id="btnJustificar" onclick="tentarJustificar()">Enviar Justificativa</button>
