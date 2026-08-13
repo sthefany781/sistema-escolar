@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central Do AlunoAs Minhas Notas</title>
+    <title>Central Do Aluno Minhas Notas</title>
     <style>
         * {
             margin: 0;
@@ -14,14 +15,14 @@
 
         body {
             background-color: #ffffff;
-            color: #2d3748;
+            color: #3C096C;
             display: flex;
             min-height: 100vh;
         }
-        
+
         nav {
             width: 250px;
-            background-color: #1e3a8a;
+            background-color: #16001E;
             color: #ffffff;
             padding: 40px 20px;
         }
@@ -47,8 +48,9 @@
             transition: background-color 0.2s, color 0.2s;
         }
 
-        nav ul li:hover, nav ul li.active {
-            background-color: #111111;
+        nav ul li:hover,
+        nav ul li.active {
+            background-color: #3C096C;
             color: #ffffff;
             font-weight: 700;
         }
@@ -84,98 +86,114 @@
         .card h2 {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #111111;
+            color: rgb(30, 58, 138);
             margin-bottom: 20px;
         }
 
-        .campo-grupo { 
-            margin-bottom: 28px; 
-            position: relative; 
+        .campo-grupo {
+            margin-bottom: 28px;
+            position: relative;
             text-align: left;
         }
-        
-        .campo-grupo label { 
-            display: block; 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            color: #718096; 
-            margin-bottom: 4px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
-        }
-        
-        .campo-grupo input { 
-            width: 100%; 
-            border: none; 
-            border-bottom: 1.5px solid #cbd5e0; 
-            padding: 10px 0; 
-            font-size: 1rem; 
-            color: #1a202c; 
-            background: transparent; 
-            transition: border-color 0.2s; 
-        }
-        
-        .campo-grupo input:focus { 
-            outline: none; 
-            border-bottom-color: #1e3a8a; 
-        }
-        
-        .texto-erro { 
-            display: none; 
-            color: #e53e3e; 
-            font-size: 0.85rem; 
-            margin-top: 8px; 
-            line-height: 1.4; 
-        }
-        
-        .btn-entrar { 
-            width: 100%; 
-            background-color: #111111; 
-            color: #ffffff; 
-            border: none; 
-            padding: 14px; 
-            border-radius: 6px; 
-            font-size: 1rem; 
-            font-weight: 600; 
-            cursor: pointer; 
-            margin-top: 10px; 
-            transition: background-color 0.2s; 
-        }
-        
-        .btn-entrar:hover { 
-            background-color: #2d3748; 
+
+        .campo-grupo label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #3C096C;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .tabela-dados { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 20px; 
+        .campo-grupo input {
+            width: 100%;
+            border: none;
+            border-bottom: 1.5px solid #cbd5e0;
+            padding: 10px 0;
+            font-size: 1rem;
+            color: #3C096C;
+            background: transparent;
+            transition: border-color 0.2s;
         }
-        
-        .tabela-dados th, .tabela-dados td { 
-            padding: 14px 0; 
-            border-bottom: 1px solid #cbd5e0; 
-            text-align: left; 
+
+        .campo-grupo input:focus {
+            outline: none;
+            border-bottom-color: #1e3a8a;
         }
-        
-        .tabela-dados th { 
-            font-size: 0.85rem; 
-            color: #718096; 
-            text-transform: uppercase; 
+
+        .texto-erro {
+            display: none;
+            color: #e53e3e;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .btn-entrar {
+            width: 100%;
+            background-color: #16001E;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-entrar:hover {
+            background-color: #3C096C;
+        }
+
+        .tabela-dados {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .tabela-dados th,
+        .tabela-dados td {
+            padding: 14px 0;
+            border-bottom: 1px solid #cbd5e0;
+            text-align: left;
+        }
+
+        .tabela-dados th {
+            font-size: 0.85rem;
+            color: #718096;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        nav ul li a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
         }
     </style>
 </head>
+
 <body>
 
     <nav>
         <h1>Central Do Aluno</h1>
         <ul>
-            <li>Painel Inicial</li>
-            <li class="active">As Minhas Notas</li>
-            <li>Frequência</li>
-            <li>Biblioteca</li>
-            <li>Cardápio</li>
+            <li>
+                <a href="inicio.html">Pagina Inicial</a>
+            </li>
+            <li class="active">
+                <a href="notas.html">As Minhas Notas</a>
+            </li>
+            <li>
+                <a href="frequencia.html">Frequência</a>
+            </li>
+            <li>
+                <a href="biblioteca.html">Biblioteca</a>
+            </li>
+
         </ul>
     </nav>
 
@@ -187,12 +205,13 @@
 
         <div id="bloqueio-boletim" class="card" style="max-width: 500px; margin: 0 auto; text-align: center;">
             <h2> Controle de Acesso</h2>
-            <p style="color: #718096; margin-bottom: 25px; font-size: 0.95rem;">Confirme a sua senha para liberar o boletim acadêmico.</p>
+            <p style="color: #718096; margin-bottom: 25px; font-size: 0.95rem;">Confirme a sua senha para liberar o
+                boletim</p>
             <div class="campo-grupo">
                 <label for="senhaBoletim">Senha do Aluno</label>
                 <input type="password" id="senhaBoletim" placeholder="••••••••">
                 <div id="caixaErro" class="texto-erro">
-                    <strong>Abordagem Incorreta!</strong>
+                    <strong>Senha Incorreta!</strong>
                     <span id="textoErroDinamico"></span>
                 </div>
             </div>
@@ -200,45 +219,39 @@
         </div>
 
         <div id="boletim-real" class="card" style="display: none;">
-            <h2> Boletim Escolar Oficial</h2>
+            <h2> Boletim Escolar </h2>
             <table class="tabela-dados">
                 <thead>
                     <tr>
                         <th>Disciplina</th>
-                        <th>Nota 1</th>
-                        <th>Nota 2</th>
-                        <th>Média Final</th>
+                        <th>Primeiro Trimestre</th>
+                        <th>Segundo Trimestre</th>
+                        <th>Terceiro trimestre</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Matemática</td>
-                        <td>8.5</td>
-                        <td>7.5</td>
-                        <td>8.0</td>
+                        <td>8.6</td>
+                        <td>8.6</td>
+                        <td>8.6</td>
                     </tr>
                     <tr>
-                        <td>Português</td>
+                        <td>Língua Portuguesa</td>
                         <td>9.0</td>
                         <td>8.0</td>
                         <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>Fisica</td>
-                        <td>8.5</td>
-                        <td>7.5</td>
-                        <td>8.0</td>
+                        <td>Educação Financeira</td>
+                        <td>6.9</td>
+                        <td>8.4</td>
+                        <td>5.5</td>
                     </tr>
                     <tr>
-                        <td>Projeto De Vida</td>
-                        <td>8.5</td>
+                        <td>Banco De Dados</td>
                         <td>7.5</td>
-                        <td>8.0</td>
-                    </tr>
-                    <tr>
-                        <td>Ed. Fisica</td>
-                        <td>8.5</td>
-                        <td>7.5</td>
+                        <td>9.5</td>
                         <td>8.0</td>
                     </tr>
                 </tbody>
@@ -249,10 +262,10 @@
     <script>
         function processarValidaSenha(senha) {
             if (senha.length < 6) {
-                throw new Error("Sua senha está muito curta! Ela precisa ter no mínimo 6 caracteres para o sistema tentar validar.");
+                throw new Error("Sua senha está muito curta! Ela precisa ter no mínimo 6 caracteres para entrar no sistema.");
             }
             if (senha !== "sthefany") {
-                throw new Error("Senha incorreta! A senha digitada não confere com o nosso banco de dados. Tente novamente.");
+                throw new Error("Senha incorreta! Tente novamente.");
             }
             return true;
         }
@@ -278,15 +291,16 @@
         console.log("%c--- VERIFICAÇÃO UNITÁRIA DO PORTAL ---", "font-weight: bold; color: #1e3a8a;");
         const assert = (cond, msg) => console.log(cond ? `✅ Passou: ${msg}` : `❌ Falhou: ${msg}`);
 
-        try { processarValidaSenha("123"); assert(false, "T1"); } 
-        catch(e) { assert(e.message.includes("no mínimo 6"), "Teste 1: Captura de exceção por tamanho insuficiente."); }
+        try {processarValidaSenha("123"); assert(false, "T1");}
+        catch (e) {assert(e.message.includes("no mínimo 6"), "Teste 1: Captura de exceção por tamanho insuficiente.");}
 
-        try { processarValidaSenha("sthefane"); assert(false, "T2"); } 
-        catch(e) { assert(e.message.includes("Senha incorreta"), "Teste 2: Captura de exceção para credencial inválida."); }
+        try {processarValidaSenha("sthefane"); assert(false, "T2");}
+        catch (e) {assert(e.message.includes("Senha incorreta"), "Teste 2: Captura de exceção para credencial inválida.");}
 
         assert(processarValidaSenha("sthefany") === true, "Teste 3: Validação aprovada para chave secreta correta.");
         assert(validaTamanhoCurto("abc") === "Curto", "Teste 4: Refatorador identificou string pequena.");
         assert(validaTamanhoCurto("sthefany") === "OK", "Teste 5: Refatorador aprovou comprimento seguro.");
     </script>
 </body>
+
 </html>
