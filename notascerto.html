@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - As Minhas Notas</title>
+    <title>Central Do AlunoAs Minhas Notas</title>
     <style>
-        /* O SEU CSS CLEAN, HUMANIZADO E COMPACTO */
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +19,6 @@
             min-height: 100vh;
         }
         
-        /* Menu Lateral Ajustado para Azul Escuro (#1e3a8a) */
         nav {
             width: 250px;
             background-color: #1e3a8a;
@@ -55,7 +53,6 @@
             font-weight: 700;
         }
 
-        /* Conteúdo Principal */
         main {
             flex: 1;
             padding: 50px;
@@ -76,7 +73,6 @@
             color: #718096;
         }
 
-        /* Cards Minimalistas */
         .card {
             background: #ffffff;
             padding: 25px;
@@ -92,7 +88,6 @@
             margin-bottom: 20px;
         }
 
-        /* INPUTS MINIMALISTAS COM LINHA INFERIOR (O SEU PADRÃO) */
         .campo-grupo { 
             margin-bottom: 28px; 
             position: relative; 
@@ -151,7 +146,6 @@
             background-color: #2d3748; 
         }
 
-        /* Tabela Limpa para Notas */
         .tabela-dados { 
             width: 100%; 
             border-collapse: collapse; 
@@ -174,9 +168,8 @@
 </head>
 <body>
 
-    <!-- Menu Lateral com Fundo Azul -->
     <nav>
-        <h1>🏫 EduConnect</h1>
+        <h1>Central Do Aluno</h1>
         <ul>
             <li>Painel Inicial</li>
             <li class="active">As Minhas Notas</li>
@@ -186,16 +179,14 @@
         </ul>
     </nav>
 
-    <!-- Conteúdo Principal Fixado nas Notas -->
     <main>
         <div class="header">
             <h2>As Minhas Notas</h2>
-            <div class="user-info">👤 Aluno: Gabriel Souza (7º Ano A)</div>
+            <div class="user-info"> Aluno: Sthefany Oliveira (3º Ano D)</div>
         </div>
 
-        <!-- TELA DE BLOQUEIO POR SENHA (IGUAL AO SEU PADRÃO) -->
         <div id="bloqueio-boletim" class="card" style="max-width: 500px; margin: 0 auto; text-align: center;">
-            <h2>🔒 Controle de Acesso</h2>
+            <h2> Controle de Acesso</h2>
             <p style="color: #718096; margin-bottom: 25px; font-size: 0.95rem;">Confirme a sua senha para liberar o boletim acadêmico.</p>
             <div class="campo-grupo">
                 <label for="senhaBoletim">Senha do Aluno</label>
@@ -208,9 +199,8 @@
             <button class="btn-entrar" onclick="checarAcessoNotas()">Visualizar Notas</button>
         </div>
 
-        <!-- TABELA DE NOTAS REAL (APARECE APÓS A SENHA CORRETA) -->
         <div id="boletim-real" class="card" style="display: none;">
-            <h2>📊 Boletim Escolar Oficial</h2>
+            <h2> Boletim Escolar Oficial</h2>
             <table class="tabela-dados">
                 <thead>
                     <tr>
@@ -233,14 +223,30 @@
                         <td>8.0</td>
                         <td>8.5</td>
                     </tr>
+                    <tr>
+                        <td>Fisica</td>
+                        <td>8.5</td>
+                        <td>7.5</td>
+                        <td>8.0</td>
+                    </tr>
+                    <tr>
+                        <td>Projeto De Vida</td>
+                        <td>8.5</td>
+                        <td>7.5</td>
+                        <td>8.0</td>
+                    </tr>
+                    <tr>
+                        <td>Ed. Fisica</td>
+                        <td>8.5</td>
+                        <td>7.5</td>
+                        <td>8.0</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </main>
 
-    <!-- MOTOR DE VALIDAÇÃO E TESTES -->
     <script>
-        // TRATAMENTO DE EXCEÇÕES (A sua lógica de validação)
         function processarValidaSenha(senha) {
             if (senha.length < 6) {
                 throw new Error("Sua senha está muito curta! Ela precisa ter no mínimo 6 caracteres para o sistema tentar validar.");
@@ -267,12 +273,8 @@
             }
         }
 
-        // REFATORAÇÃO DE CÓDIGO (Arrow Function com Operador Ternário)
         const validaTamanhoCurto = (str) => str.length >= 6 ? "OK" : "Curto";
 
-        // ==========================================================
-        // 🧪 BATERIA DOS 5 TESTES UNITÁRIOS VÁLIDOS (Roda automático no F12)
-        // ==========================================================
         console.log("%c--- VERIFICAÇÃO UNITÁRIA DO PORTAL ---", "font-weight: bold; color: #1e3a8a;");
         const assert = (cond, msg) => console.log(cond ? `✅ Passou: ${msg}` : `❌ Falhou: ${msg}`);
 
