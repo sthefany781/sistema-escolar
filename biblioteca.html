@@ -1,57 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - Biblioteca</title>
+    <title>Central Do aluno Biblioteca</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #ffffff; color: #2d3748; display: flex; min-height: 100vh; }
-        nav { width: 250px; background-color: #1e3a8a; color: #ffffff; padding: 40px 20px; }
-        nav h1 { font-size: 1.3rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
-        nav ul { list-style: none; }
-        nav ul li { padding: 12px 15px; margin-bottom: 8px; border-radius: 6px; font-size: 0.95rem; color: #cbd5e0; cursor: pointer; }
-        nav ul li.active { background-color: #111111; color: #ffffff; font-weight: 700; }
-        main { flex: 1; padding: 50px; overflow-y: auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid #cbd5e0; padding-bottom: 15px; }
-        .user-info { font-weight: 600; color: #718096; }
-        .card { background: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #cbd5e0; margin-bottom: 30px; }
-        .card h2 { font-size: 1.3rem; font-weight: 700; color: #111111; margin-bottom: 20px; }
-        .campo-grupo { margin-bottom: 28px; position: relative; text-align: left; }
-        .campo-grupo label { display: block; font-size: 0.85rem; font-weight: 600; color: #718096; margin-bottom: 8px; text-transform: uppercase; }
-        .campo-grupo select { width: 100%; border: none; border-bottom: 1.5px solid #cbd5e0; padding: 10px 0; font-size: 1rem; color: #1a202c; background: transparent; outline: none; }
-        .texto-erro { display: none; color: #e53e3e; font-size: 0.85rem; margin-top: 12px; line-height: 1.4; }
-        .toast-sucesso { display: none; background-color: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; padding: 14px; border-radius: 6px; text-align: center; margin-top: 20px; }
-        .btn-entrar { width: 100%; background-color: #111111; color: #ffffff; border: none; padding: 14px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 10px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: rgb(30, 58, 138);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        nav {
+            width: 250px;
+            background-color: #16001E;
+            color: #ffffff;
+            padding: 40px 20px;
+        }
+
+        nav h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #cbd5e0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        nav ul li:hover,
+        nav ul li.active {
+            background-color: #3C096C;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        nav ul li a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+        }
+
+        main {
+            flex: 1;
+            padding: 50px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 15px;
+        }
+
+        .user-info {
+            font-weight: 600;
+            color: #718096;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgb(30, 58, 138);
+            margin-bottom: 20px;
+        }
+
+        .campo-grupo {
+            margin-bottom: 28px;
+            position: relative;
+            text-align: left;
+        }
+
+        .campo-grupo label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #718096;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .campo-grupo select {
+            width: 100%;
+            border: none;
+            border-bottom: 1.5px solid #cbd5e0;
+            padding: 10px 0;
+            font-size: 1rem;
+            color: #1a202c;
+            background: transparent;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .campo-grupo select:focus {
+            border-bottom-color: #1e3a8a;
+        }
+
+        .texto-erro {
+            display: none;
+            color: #e53e3e;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            line-height: 1.4;
+        }
+
+        .texto-erro strong {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .toast-sucesso {
+            display: none;
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 14px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .btn-entrar {
+            width: 100%;
+            background-color: #16001E;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-entrar:hover {
+            background-color: #3C096C;
+        }
     </style>
 </head>
+
 <body>
     <nav>
-        <h1>🏫 EduConnect</h1>
+        <h1>Central Do Aluno</h1>
         <ul>
-            <li>Painel Inicial</li>
-            <li>As Minhas Notas</li>
-            <li>Frequência</li>
-            <li class="active">Biblioteca</li>
-            <li>Cardápio</li>
+            <li>
+                <a href="inicio.html">Pagina Inicial</a>
+            </li>
+
+            <li>
+                <a href="notas.html">As Minhas Notas</a>
+            </li>
+
+            <li>
+                <a href="frequencia.html">Frequência</a>
+            </li>
+
+            <li class="active">
+                <a href="biblioteca.html">Biblioteca</a>
+            </li>
+
         </ul>
     </nav>
     <main>
         <div class="header">
             <h2>Biblioteca Escolar</h2>
-            <div class="user-info">👤 Aluno: Gabriel Souza (7º Ano A)</div>
+            <div class="user-info"> Aluno: Sthefany oliveira (3º Ano D)</div>
         </div>
         <div class="card">
-            <h2>🔄 Devolução de Exemplar</h2>
-            <p>Livro atualmente em sua posse: <strong>"Livro Barbie"</strong></p>
+            <h2> Devolução </h2>
+            <p>Livro que você está atualemnte <strong>"O Pequeno Principe"</strong></p>
             <div id="erroDevolucao" class="texto-erro">
                 <strong>Abordagem Incorreta!</strong>
                 <span id="txtErroDevolucaoTxt">Aviso de devolução pendente.</span>
             </div>
-            <button class="btn-entrar" onclick="notificarTentativaDevolucao()">Informar que Devolvi o Livro Barbie</button>
+            <button class="btn-entrar" onclick="notificarTentativaDevolucao()">Informar que Devolvi o Livro O Pequeno
+                Principe</button>
         </div>
         <div class="card">
-            <h2>📚 Pegar Livro Emprestado</h2>
+            <h2> Pegar Livro Emprestado</h2>
             <div class="campo-grupo">
                 <label for="selectLivro">Livros Disponíveis para Pegar</label>
                 <select id="selectLivro">
@@ -68,18 +229,18 @@
         </div>
     </main>
     <script>
-        let tiaDaBibliotecaConfirmou = false;
+        let SupervisoraDaBibliotecaConfirmou = false;
 
-        function verificarStatusFisicoNaBiblioteca(confirmadoPelaTia) {
-            if (!confirmadoPelaTia) {
-                throw new Error("Você avisou no site que devolveu, mas a tia que cuida da biblioteca marcou que você não devolveu ainda porque você não entregou o livro físico lá na recepção!");
+        function verificarStatusFisicoNaBiblioteca(confirmadoPelaSupervisora) {
+            if (!confirmadoPelaSupervisora) {
+                throw new Error("Você avisou no site que devolveu, mas a supervisora da biblioteca marcou que você não devolveu ainda porque você não entregou o livro físico!");
             }
             return true;
         }
 
-        function verificarPermissaoNovoEmprestimo(confirmadoPelaTia) {
-            if (!confirmadoPelaTia) {
-                throw new Error("Não dá para pegar esse livro emprestado porque você não deu a devolução daquele livro da Barbie na biblioteca ainda com a atendente.");
+        function verificarPermissaoNovoEmprestimo(confirmadoPelaSupervisora) {
+            if (!confirmadoPelaSupervisora) {
+                throw new Error("Não é possivel pegar esse livro emprestado sem devolver oque está pendente.");
             }
             return true;
         }
@@ -88,7 +249,7 @@
             const erroBox = document.getElementById("erroDevolucao");
             const txtErro = document.getElementById("txtErroDevolucaoTxt");
             try {
-                verificarStatusFisicoNaBiblioteca(tiaDaBibliotecaConfirmou);
+                verificarStatusFisicoNaBiblioteca(SupervisoraDaBibliotecaConfirmou);
             } catch (erro) {
                 txtErro.textContent = erro.message;
                 erroBox.style.display = "block";
@@ -100,21 +261,22 @@
             const ticketBox = document.getElementById("ticketAgendamento");
             const txtErroDinamico = document.getElementById("txtErroEmprestimoTxt");
             try {
-                verificarPermissaoNovoEmprestimo(tiaDaBibliotecaConfirmou);
+                verificarPermissaoNovoEmprestimo(SupervisoraDaBibliotecaConfirmou);
                 erroBox.style.display = "none";
                 ticketBox.style.display = "block";
             } catch (erro) {
-                ticketBox.style.display = "none"; 
-                txtErroDinamico.textContent = erro.message; 
-                erroBox.style.display = "block"; 
+                ticketBox.style.display = "none";
+                txtErroDinamico.textContent = erro.message;
+                erroBox.style.display = "block";
             }
         }
 
-        const checarEstadoConta = (bloqueado) => !bloqueado ? "Pendente Barbie" : "Conta OK";
+        const checarEstadoConta = (bloqueado) => !bloqueado ? "Pendente O Pequeno principe" : "Conta OK";
 
         console.log("--- TESTES ---");
-        try { verificarStatusFisicoNaBiblioteca(false); } catch(e) { console.log("✅ T1 OK"); }
-        try { verificarPermissaoNovoEmprestimo(false); } catch(e) { console.log("✅ T2 OK"); }
+        try {verificarStatusFisicoNaBiblioteca(false);} catch (e) {console.log("✅ T1 OK");}
+        try {verificarPermissaoNovoEmprestimo(false);} catch (e) {console.log("✅ T2 OK");}
     </script>
 </body>
+
 </html>
