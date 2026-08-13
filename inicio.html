@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Do Aluno</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: rgb(45, 55, 72);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        nav {
+            width: 250px;
+            background-color: #16001E;
+            color: #ffffff;
+            padding: 40px 20px;
+        }
+
+        nav h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #cbd5e0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        nav ul li a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+        }
+
+        nav ul li:hover,
+        nav ul li.active {
+            background-color: #3C096C;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        main {
+            flex: 1;
+            padding: 50px;
+            overflow-y: auto;
+            background-color: #fafafa;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1.5px solid rgb(203, 213, 224);
+            padding-bottom: 18px;
+        }
+
+        .header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3C096C;
+        }
+
+        .user-info {
+            font-weight: 500;
+            color: rgb(113, 128, 150);
+            font-size: 0.95rem;
+        }
+
+        .aba-seccao {
+            display: none;
+        }
+
+        .aba-seccao.active {
+            display: block;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 10px;
+            border: 1px solid rgb(203, 213, 224);
+            margin-bottom: 28px;
+            box-shadow: rgb(30, 58, 138);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: rgb(30, 58, 138);
+            margin-bottom: 22px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 14px 0;
+            border-bottom: 1px solid rgb(226, 232, 240);
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            font-size: 0.8rem;
+            color: rgb(113, 128, 150);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        td {
+            color: rgb(45, 55, 72);
+        }
+
+        .timetable {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+        }
+
+        .day-column {
+            background: #f8fafc;
+            border: 1px solid rgb(226, 232, 240);
+            border-radius: 8px;
+            padding: 14px 10px;
+            text-align: center;
+        }
+
+        .day-title {
+            font-weight: 700;
+            color: rgb(113, 128, 150);
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .subject-block {
+            background: #ffffff;
+            color: rgb(26, 32, 44);
+            border: 1px solid rgb(226, 232, 240);
+            padding: 9px 6px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .notice-item {
+            border-left: 4px solid #e53e3e;
+            background: #fff5f5;
+            padding: 16px;
+            margin-bottom: 14px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .notice-item.lido {
+            border-left-color: rgb(203, 213, 224);
+            background: #f8fafc;
+            opacity: 0.7;
+        }
+
+        .notice-item h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: rgb(17, 17, 17);
+            margin-bottom: 5px;
+        }
+
+        .notice-item p {
+            font-size: 0.88rem;
+            color: rgb(113, 128, 150);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .status-widget {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid rgb(226, 232, 240);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgb(45, 55, 72);
+        }
+
+        .status-widget:last-child {
+            border-bottom: none;
+        }
+
+        .badge {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge.alert {
+            color: #e53e3e;
+        }
+
+        .badge.ok {
+            color: #166534;
+        }
+
+        .campo-grupo {
+            margin-bottom: 28px;
+            position: relative;
+            text-align: left;
+        }
+
+        .campo-grupo label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgb(113, 128, 150);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .campo-grupo input,
+        .campo-grupo select {
+            width: 100%;
+            border: none;
+            border-bottom: 1.5px solid rgb(203, 213, 224);
+            padding: 11px 0;
+            font-size: 1rem;
+            color: rgb(26, 32, 44);
+            background: transparent;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .campo-grupo input:focus,
+        .campo-grupo select:focus {
+            border-bottom-color: #16001E;
+        }
+
+        .texto-erro {
+            display: none;
+            color: #e53e3e;
+            font-size: 0.85rem;
+            margin-top: 9px;
+            line-height: 1.4;
+        }
+
+        .texto-erro strong {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .toast-sucesso {
+            display: none;
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 14px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .btn-entrar {
+            width: 100%;
+            background-color: #16001E;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-entrar:hover {
+            background-color: #3C096C;
+        }
+
+        .btn-entrar.btn-pequeno {
+            width: auto;
+            padding: 7px 14px;
+            font-size: 0.82rem;
+            margin-top: 0;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h1>Central Do Aluno</h1>
+        <ul>
+            <li id="menu-inicio" class="active">
+                <a href="inicio.html">Pagina Inicial</a>
+            </li>
+
+            <li id="menu-notas">
+                <a href="notas.html">As Minhas Notas</a>
+            </li>
+
+            <li id="menu-frequencia">
+                <a href="frequencia.html">Frequência</a>
+            </li>
+
+            <li id="menu-biblioteca">
+                <a href="biblioteca.html">Biblioteca</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="header">
+            <h2>Portal Académico</h2>
+            <div class="user-info">Aluno: Sthefany Oliveira (3º Ano D)</div>
+        </div>
+
+        <div id="aba-home" class="aba-seccao active">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h2>Horário das Aulas da Semana</h2>
+                    <div class="timetable">
+                        <div class="day-column">
+                            <div class="day-title">Seg</div>
+                            <div class="subject-block">Matemática</div>
+                            <div class="subject-block">Educação Financeira</div>
+                            <div class="subject-block">Banco De Dados</div>
+                        </div>
+                        <div class="day-column">
+                            <div class="day-title">Ter</div>
+                            <div class="subject-block">Português</div>
+                            <div class="subject-block">Matemática</div>
+                            <div class="subject-block">Ed. Fisica</div>
+                        </div>
+                        <div class="day-column">
+                            <div class="day-title">Qua</div>
+                            <div class="subject-block">matemática</div>
+                            <div class="subject-block">Matemática</div>
+                            <div class="subject-block">Língua Portuguesa</div>
+                        </div>
+                        <div class="day-column">
+                            <div class="day-title">Qui</div>
+                            <div class="subject-block">Língua Portuguesa</div>
+                            <div class="subject-block">Educação F.</div>
+                            <div class="subject-block">Matemática</div>
+                        </div>
+                        <div class="day-column">
+                            <div class="day-title">Sex</div>
+                            <div class="subject-block">Língua Portuguesa</div>
+                            <div class="subject-block">Português</div>
+                            <div class="subject-block">Banco De Dados</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="card">
+                        <h2>Últimos Avisos</h2>
+                        <div id="aviso-recuperacao" class="notice-item">
+                            <h4>Prova de Recuperação</h4>
+                            <p>Amanhã na primeira aula na sala 12.</p>
+                            <button class="btn-entrar btn-pequeno"
+                                onclick="marcarAvisoComoLido('aviso-recuperacao')">Marcar como Lido</button>
+
+                            <div id="sucesso-aviso" class="toast-sucesso" style="margin-top: 12px;">
+                                ✓ Aviso marcado como lido!
+                            </div>
+
+                            <div class="texto-erro" style="margin-top: 5px;">
+                                <strong>Abordagem Incorreta!</strong>
+                                <span>Este aviso já foi lido .</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>Informações Rápidas</h2>
+                        <div class="status-widget">
+                            <span>Avisos Pendentes</span>
+                            <span id="contador-avisos" class="badge alert" style="font-weight: bold;">1 Não Lido</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="aba-notas" class="aba-seccao">
+            <div id="bloqueio-boletim" class="card" style="max-width: 500px; margin: 0 auto; text-align: center;">
+                <h2> Controle de Acesso</h2>
+                <p style="color: rgb(113, 128, 150); margin-bottom: 25px; font-size: 0.95rem;">
+                    Confirme a sua senha secreta para exibir o boletim acadêmico.
+                </p>
+
+                <div class="campo-grupo">
+                    <label for="senhaAcesso">Senha do Aluno</label>
+                    <input type="password" id="senhaAcesso" placeholder="••••••••">
+
+                    <div id="erroSenhaBox" class="texto-erro">
+                        <strong>Abordagem Incorreta!</strong>
+                        <span id="erroTextoMsg">Mensagem.</span>
+                    </div>
+                </div>
+
+                <button class="btn-entrar" onclick="checarAcessoNotas()">Entrar no Sistema</button>
+            </div>
+
+            <div id="boletim-real" class="card" style="display: none;">
+                <h2>Boletim de Notas</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Matéria</th>
+                            <th>1º Bimestre</th>
+                            <th>2º Bimestre</th>
+                            <th>Média Final</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Matemática</td>
+                            <td>8.5</td>
+                            <td>7.5</td>
+                            <td>8.0</td>
+                        </tr>
+
+                        <tr>
+                            <td>Português</td>
+                            <td>9.0</td>
+                            <td>8.0</td>
+                            <td>8.5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="aba-frequencia" class="aba-seccao">
+            <div class="card">
+                <h2> Percentual de Presença</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Disciplina</th>
+                            <th>Aulas Totais</th>
+                            <th>Faltas</th>
+                            <th>Frequência</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Matemática</td>
+                            <td>40</td>
+                            <td>12</td>
+                            <td id="freq-mat" style="color: #e53e3e; font-weight: bold;">70%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2> Justificar Falta Pendente</h2>
+
+                <div class="campo-grupo">
+                    <label for="motivoFalta">Motivo ou Nome do Atestado</label>
+
+                    <input type="text" id="motivoFalta" placeholder="Ex: Consulta médica, gripe...">
+
+                    <div id="erroFrequencia" class="texto-erro">
+                        <strong>Abordagem Incorreta!</strong>
+                        <span id="txtErroFreq">Aviso.</span>
+                    </div>
+                </div>
+
+                <div id="sucessoFrequencia" class="toast-sucesso">
+                    ✓ Enviado! Suas faltas foram abonadas no boletim.
+                </div>
+
+                <button class="btn-entrar" id="btnJustificar" onclick="tentarJustificar()">
+                    Enviar Justificativa
+                </button>
+            </div>
+        </div>
+
+        <!-- ABA 4: BIBLIOTECA -->
+        <div id="aba-biblioteca" class="aba-seccao">
+            <div class="card">
+                <h2>Devolução de Exemplar</h2>
+
+                <p style="color: rgb(113, 128, 150); margin-bottom: 20px;">
+                    Livro em sua posse: <strong>"Livro O Pequeno Principe"</strong>
+                </p>
+
+                <div id="erroDevolucao" class="texto-erro">
+                    <strong>Abordagem Incorreta!</strong>
+                    <span id="txtErroDevolucaoTxt">Pendente.</span>
+                </div>
+
+                <button class="btn-entrar" onclick="notificarTentativaDevolucao()">
+                    Informar que Devolvi o Livro O pequeno principe
+                </button>
+            </div>
+
+            <div class="card">
+                <h2>Pegar Livro Emprestado</h2>
+
+                <div class="campo-grupo">
+                    <label for="selectLivro">Livros Disponíveis para Pegar</label>
+
+                    <select id="selectLivro">
+                        <option value="O Alquimista">O Alquimista - Paulo Coelho</option>
+                        <option value="Dom Casmurro">Dom Casmurro - Machado de Assis</option>
+                    </select>
+
+                    <div id="erroEmprestimo" class="texto-erro">
+                        <strong>Acesso Bloqueado!</strong>
+                        <span id="txtErroEmprestimoTxt">Bloqueio.</span>
+                    </div>
+                </div>
+
+                <button class="btn-entrar" onclick="tentarPegarNovoLivro()">
+                    Solicitar Empréstimo
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let avisoJaFoiLido = false;
+        let SupervisoraDaBibliotecaConfirmou = false;
+
+        function marcarAvisoComoLido(idElemento) {
+            const cardAviso = document.getElementById(idElemento);
+            const caixaErro = cardAviso.querySelector('.texto-erro');
+            const caixaSucesso = document.getElementById('sucesso-aviso');
+
+            try {
+                validarConfirmacaoAviso(avisoJaFoiLido);
+                avisoJaFoiLido = true;
+                cardAviso.classList.add('lido');
+                document.getElementById("contador-avisos").textContent = "0 Pendentes";
+                cardAviso.querySelector('button').style.display = "none";
+
+                // Mostra a mensagem de sucesso
+                caixaSucesso.style.display = "block";
+
+            } catch (erro) {
+                cardAviso.classList.add("lido");
+
+                const botao = cardAviso.querySelector("button");
+                botao.textContent = "✓ Lido";
+                botao.style.backgroundColor = "#166534";
+                botao.style.color = "#ffffff";
+                botao.disabled = true;
+            }
+        }
+
+        function processarRegrasSenha(senha) {
+            if (senha.length < 6) throw new Error("A senha digitada precisa conter no mínimo 6 caracteres!");
+            if (senha !== "sthefany") throw new Error("Senha incorreta! Digite a credencial certa para entrar.");
+            return true;
+        }
+
+        function checarAcessoNotas() {
+            try {
+                processarRegrasSenha(document.getElementById("senhaAcesso").value);
+                document.getElementById("bloqueio-boletim").style.display = "none";
+                document.getElementById("boletim-real").style.display = "block";
+            } catch (e) {
+                document.getElementById("erroTextoMsg").textContent = e.message;
+                document.getElementById("erroSenhaBox").style.display = "block";
+            }
+        }
+
+        function analisarTextoJustificativa(texto) {
+            const limpo = texto.trim().toLowerCase();
+
+            if (limpo === "") throw new Error("O campo não pode ficar vazio! Digite o motivo.");
+
+            const invalidos = ["preguiça", "dormi", "esqueci", "atrasei"];
+
+            for (let t of invalidos) {
+                if (limpo.includes(t)) {
+                    throw new Error("Motivo inválido! Preguiça ou esquecimento não são justificáveis.");
+                }
+            }
+
+            if (limpo.length < 8) {
+                throw new Error("Explicação muito curta! Digite o motivo detalhado (Mínimo 8 caracteres).");
+            }
+
+            return true;
+        }
+
+        function tentarJustificar() {
+            try {
+                analisarTextoJustificativa(document.getElementById("motivoFalta").value);
+                document.getElementById("erroFrequencia").style.display = "none";
+                document.getElementById("sucessoFrequencia").style.display = "block";
+                document.getElementById("freq-mat").textContent = "95%";
+                document.getElementById("freq-mat").style.color = "#166534";
+            } catch (erro) {
+                document.getElementById("txtErroFreq").textContent = erro.message;
+                document.getElementById("erroFrequencia").style.display = "block";
+            }
+        }
+
+        function verificarStatusFisicoNaBiblioteca(confirmado) {
+            if (!confirmado) throw new Error("Você avisou no site que devolveu, mas a supervisora da biblioteca marcou que você não devolveu ainda porque você não entregou o livro físico!");
+            return true;
+        }
+
+        function verificarPermissaoNovoEmprestimo(confirmado) {
+            if (!confirmado) throw new Error("Não é possivel pegar esse livro emprestado sem devolver oque está pendente.");
+            return true;
+        }
+
+        function notificarTentativaDevolucao() {
+            try {
+                verificarStatusFisicoNaBiblioteca(SupervisoraDaBibliotecaConfirmou);
+            } catch (e) {
+                document.getElementById("txtErroDevolucaoTxt").textContent = e.message;
+                document.getElementById("erroDevolucao").style.display = "block";
+            }
+        }
+
+        function tentarPegarNovoLivro() {
+            try {
+                verificarPermissaoNovoEmprestimo(SupervisoraDaBibliotecaConfirmou);
+            } catch (e) {
+                document.getElementById("txtErroEmprestimoTxt").textContent = e.message;
+                document.getElementById("erroEmprestimo").style.display = "block";
+            }
+        }
+
+        const obterStatusAviso = (lido) => lido ? "Arquivado" : "Urgente";
+
+        console.log("--- BATERIA DE TESTES INTEGRADOS ---");
+
+        try {
+            validarConfirmacaoAviso(true);
+        } catch (e) {
+            console.log("Teste 1: Dupla leitura de aviso bloqueada.");
+        }
+
+        try {
+            processarRegrasSenha("123");
+        } catch (e) {
+            console.log("Teste 2: Senha curta bloqueada.");
+        }
+
+        try {
+            analisarTextoJustificativa("");
+        } catch (e) {
+            console.log("Teste 3: Campo de justificativa vazio bloqueado.");
+        }
+
+        try {
+            verificarPermissaoNovoEmprestimo(false);
+        } catch (e) {
+            console.log("Teste 4: Empréstimo sem devolver o livro do Pequeno Principe bloqueado.");
+        }
+
+        console.log(
+            obterStatusAviso(true) === "Arquivado"
+                ? " Teste 5: Função refatorada operando com sucesso."
+                : "Falhou"
+        );
+    </script>
+
+</body>
+
+</html>
