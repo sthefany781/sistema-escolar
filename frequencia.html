@@ -1,213 +1,232 @@
-
-
-
 <!DOCTYPE html>
 <html lang="pt-PT">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central Do Aluno Frequência</title>
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-        
-        body { 
-            background-color: #ffffff; 
-            color: #2d3748; 
-            display: flex; 
-            min-height: 100vh; 
+
+        body {
+            background-color: #ffffff;
+            color: rgb(30, 58, 138);
+            display: flex;
+            min-height: 100vh;
         }
-        
-        nav { 
-            width: 250px; 
-            background-color: #1e3a8a; 
-            color: #ffffff; 
-            padding: 40px 20px; 
+
+        nav {
+            width: 250px;
+            background-color: #16001E;
+            color: #ffffff;
+            padding: 40px 20px;
         }
-        
-        nav h1 { 
-            font-size: 1.3rem; 
-            font-weight: 800; 
-            margin-bottom: 40px; 
-            text-align: center; 
+
+        nav h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
         }
-        
-        nav ul { 
-            list-style: none; 
+
+        nav ul {
+            list-style: none;
         }
-        
-        nav ul li { 
-            padding: 12px 15px; 
-            margin-bottom: 8px; 
-            border-radius: 6px; 
-            font-size: 0.95rem; 
-            color: #cbd5e0; 
-            cursor: pointer; 
-            transition: background-color 0.2s, color 0.2s; 
+
+        nav ul li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #cbd5e0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
         }
-        
-        nav ul li:hover, nav ul li.active { 
-            background-color: #111111; 
-            color: #ffffff; 
-            font-weight: 700; 
+
+        nav ul li:hover,
+        nav ul li.active {
+            background-color: #3C096C;
+            color: #ffffff;
+            font-weight: 700;
         }
-        
-        main { 
-            flex: 1; 
-            padding: 50px; 
-            overflow-y: auto; 
+
+        main {
+            flex: 1;
+            padding: 50px;
+            overflow-y: auto;
         }
-        
-        .header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 40px; 
-            border-bottom: 1px solid #cbd5e0; 
-            padding-bottom: 15px; 
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 15px;
         }
-        
-        .user-info { 
-            font-weight: 600; 
-            color: #718096; 
+
+        .user-info {
+            font-weight: 600;
+            color: #718096;
         }
-        
-        .card { 
-            background: #ffffff; 
-            padding: 25px; 
-            border-radius: 8px; 
-            border: 1px solid #cbd5e0; 
-            margin-bottom: 30px; 
+
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            margin-bottom: 30px;
         }
-        
-        .card h2 { 
-            font-size: 1.3rem; 
-            font-weight: 700; 
-            color: #111111; 
-            margin-bottom: 20px; 
+
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgb(30, 58, 138);
+            margin-bottom: 20px;
         }
-        
-        .campo-grupo { 
-            margin-bottom: 28px; 
-            position: relative; 
-            text-align: left; 
+
+        .campo-grupo {
+            margin-bottom: 28px;
+            position: relative;
+            text-align: left;
         }
-        
-        .campo-grupo label { 
-            display: block; 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            color: #718096; 
-            margin-bottom: 8px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
+
+        .campo-grupo label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #718096;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        
-        .campo-grupo input { 
-            width: 100%; 
-            border: none; 
-            border-bottom: 1.5px solid #cbd5e0; 
-            padding: 10px 0; 
-            font-size: 1rem; 
-            color: #1a202c; 
-            background: transparent; 
-            outline: none; 
-            transition: border-color 0.2s; 
+
+        .campo-grupo input {
+            width: 100%;
+            border: none;
+            border-bottom: 1.5px solid #cbd5e0;
+            padding: 10px 0;
+            font-size: 1rem;
+            color: #3C096C;
+            background: transparent;
+            outline: none;
+            transition: border-color 0.2s;
         }
-        
-        .campo-grupo input:focus { 
-            border-bottom-color: #1e3a8a; 
+
+        .campo-grupo input:focus {
+            border-bottom-color: #1e3a8a;
         }
-        
-        .texto-erro { 
-            display: none; 
-            color: #e53e3e; 
-            font-size: 0.85rem; 
-            margin-top: 12px; 
-            line-height: 1.4; 
+
+        .texto-erro {
+            display: none;
+            color: #e53e3e;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            line-height: 1.4;
         }
-        
-        .texto-erro strong { 
-            display: block; 
-            margin-bottom: 2px; 
+
+        .texto-erro strong {
+            display: block;
+            margin-bottom: 2px;
         }
-        
-        .toast-sucesso { 
-            display: none; 
-            background-color: #f0fdf4; 
-            color: #166534; 
-            border: 1px solid #bbf7d0; 
-            padding: 14px; 
-            border-radius: 6px; 
-            text-align: center; 
-            margin-top: 20px; 
-            font-size: 0.95rem; 
-            font-weight: 500; 
+
+        .toast-sucesso {
+            display: none;
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 14px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
-        
-        .btn-entrar { 
-            width: 100%; 
-            background-color: #111111; 
-            color: #ffffff; 
-            border: none; 
-            padding: 14px; 
-            border-radius: 6px; 
-            font-size: 1rem; 
-            font-weight: 600; 
-            cursor: pointer; 
-            transition: background-color 0.2s; 
+
+        .btn-entrar {
+            width: 100%;
+            background-color: #16001E;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
-        
-        .btn-entrar:hover { 
-            background-color: #2d3748; 
+
+        .btn-entrar:hover {
+            background-color: #3C096C;
         }
-        
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 15px; 
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
         }
-        
-        th, td { 
-            padding: 14px 0; 
-            border-bottom: 1px solid #cbd5e0; 
-            text-align: left; 
-            font-size: 0.95rem; 
+
+        th,
+        td {
+            padding: 14px 0;
+            border-bottom: 1px solid #cbd5e0;
+            text-align: left;
+            font-size: 0.95rem;
         }
-        
-        th { 
-            font-size: 0.85rem; 
-            color: #718096; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
+
+        th {
+            font-size: 0.85rem;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul li a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
         }
     </style>
 </head>
+
 <body>
 
     <nav>
-        <h1> Central Do Aluno</h1>
+        <h1>Central Do Aluno</h1>
         <ul>
-            <li>Painel Inicial</li>
-            <li>As Minhas Notas</li>
-            <li class="active">Frequência</li>
-            <li>Biblioteca</li>
-            <li>Cardápio</li>
+            <li>
+                <a href="inicio.html">Pagina Inicial</a>
+            </li>
+
+            <li>
+                <a href="notas.html">As Minhas Notas</a>
+            </li>
+
+            <li class="active">
+                <a href="frequencia.html">Frequência</a>
+            </li>
+
+            <li>
+                <a href="biblioteca.html">Biblioteca</a>
+            </li>
+
+
         </ul>
     </nav>
 
     <main>
         <div class="header">
             <h2>Frequência Escolar</h2>
-            <div class="user-info"> Aluno: Sthefany Oliveira (3º Ano D)</div>
+            <div class="user-info">Aluno: Sthefany Oliveira (3º Ano D)</div>
         </div>
 
         <div class="card">
-            <h2>Percentual de Presença</h2>
+            <h2> Percentual de Presença</h2>
             <table>
                 <thead>
                     <tr>
@@ -225,56 +244,51 @@
                         <td id="freq-mat" style="color: #e53e3e; font-weight: bold;">70%</td>
                     </tr>
                     <tr>
-                        <td>Português</td>
+                        <td>Língua Portuguesa</td>
                         <td>40</td>
                         <td>4</td>
                         <td style="color: #166534; font-weight: bold;">90%</td>
                     </tr>
                     <tr>
-                        <td>Fisica</td>
+                        <td>Educação Financeira</td>
+                        <td>40</td>
+                        <td>4</td>
+                        <td style="color: #166534; font-weight: bold;">90%</td>
+                    <tr>
+                        <td>banco De Dados</td>
                         <td>40</td>
                         <td>4</td>
                         <td style="color: #166534; font-weight: bold;">90%</td>
                     </tr>
-                    <tr>
-                        <td>Projeto De Vida</td>
-                        <td>40</td>
-                        <td>4</td>
-                        <td style="color: #166534; font-weight: bold;">90%</td>
-                    </tr>
-                    <tr>
-                        <td>Ed. Fisica</td>
-                        <td>40</td>
-                        <td>4</td>
-                        <td style="color: #166534; font-weight: bold;">90%</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="card">
-            <h2> Justificar Falta Pendente</h2>
-            <p style="color: #718096; margin-bottom: 20px; font-size: 0.95rem;">Envie o motivo da sua ausência em Matemática para análise da coordenação.</p>
-            
+            <h2>Justificar Falta Pendente</h2>
+            <p style="color: #718096; margin-bottom: 20px; font-size: 0.95rem;">Envie o motivo da sua ausência em
+                Matemática para análise da coordenação.</p>
+
             <div class="campo-grupo">
                 <label for="motivoFalta">Motivo ou Nome do Atestado</label>
                 <input type="text" id="motivoFalta" placeholder="Ex: Consulta médica, gripe, etc.">
-                
+
                 <div id="erroFrequencia" class="texto-erro">
-                    <strong>Abordagem Incorreta!</strong>
+                    <strong>Motivo Incorreto!</strong>
                     <span id="txtErroFreq">Aviso de validação.</span>
                 </div>
             </div>
-            
+
             <div id="sucessoFrequencia" class="toast-sucesso">
-                 Enviado! Sua justificativa foi entregue e as faltas foram abonadas no boletim.
+                ✓ Enviado! Sua justificativa foi entregue e a sua frequência foi aumentada.
             </div>
-            
+
             <button class="btn-entrar" id="btnJustificar" onclick="tentarJustificar()">Enviar Justificativa</button>
         </div>
     </main>
 
-<script>
+    <script>
         function analisarTextoJustificativa(texto) {
             const limpo = texto.trim().toLowerCase();
 
@@ -304,14 +318,14 @@
 
             try {
                 analisarTextoJustificativa(inputTexto);
-                
+
                 erroBox.style.display = "none";
                 sucessoBox.style.display = "block";
-                
+
                 const celulaMat = document.getElementById("freq-mat");
                 celulaMat.textContent = "95%";
                 celulaMat.style.color = "#166534";
-                
+
                 document.getElementById("btnJustificar").disabled = true;
                 document.getElementById("btnJustificar").style.backgroundColor = "#718096";
             } catch (erro) {
@@ -326,29 +340,30 @@
         console.log("%c--- VERIFICAÇÃO UNITÁRIA DE FREQUÊNCIA ---", "font-weight: bold; color: #1e3a8a;");
         const assert = (cond, msg) => console.log(cond ? `✅ Passou: ${msg}` : `❌ Falhou: ${msg}`);
 
-        try { 
-            analisarTextoJustificativa(""); 
-            assert(false, "T1"); 
-        } catch(e) { 
-            assert(e.message.includes("não pode ficar vazio"), "Teste 1: Captura de exceção para campo sem nada."); 
+        try {
+            analisarTextoJustificativa("");
+            assert(false, "T1");
+        } catch (e) {
+            assert(e.message.includes("não pode ficar vazio"), "Teste 1: Captura de exceção para campo sem nada.");
         }
 
-        try { 
-            analisarTextoJustificativa("Tive preguiça hoje"); 
-            assert(false, "T2"); 
-        } catch(e) { 
-            assert(e.message.includes("não é justificável"), "Teste 2: Captura de exceção para motivo inválido."); 
+        try {
+            analisarTextoJustificativa("Tive preguiça hoje");
+            assert(false, "T2");
+        } catch (e) {
+            assert(e.message.includes("não é justificável"), "Teste 2: Captura de exceção para motivo inválido.");
         }
 
-        try { 
-            analisarTextoJustificativa("doente"); 
-            assert(false, "T3"); 
-        } catch(e) { 
-            assert(e.message.includes("Explicação muito curta"), "Teste 3: Captura de exceção para texto curto."); 
+        try {
+            analisarTextoJustificativa("doente");
+            assert(false, "T3");
+        } catch (e) {
+            assert(e.message.includes("Explicação muito curta"), "Teste 3: Captura de exceção para texto curto.");
         }
 
         assert(analisarTextoJustificativa("Atestado de Consulta Médica") === true, "Teste 4: Justificativa aceita com sucesso.");
         assert(calcularRiscoReprovacao(4) === "Regular", "Teste 5: Função refatorada validou status com sucesso.");
     </script>
 </body>
+
 </html>
